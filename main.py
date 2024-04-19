@@ -138,6 +138,9 @@ async def check_price():
     sell_threshold_increment = 0.1
 
     while True:
+        current_time = datetime.datetime.now()
+        current_minutes = current_time.minute
+
         if current_buy_price_degen > 0:
             current_price_degen = get_current_price("DEGENUSDT")
             price_change_percent_degen = (current_price_degen - current_buy_price_degen) / current_buy_price_degen * 100
@@ -154,7 +157,10 @@ async def check_price():
                         sell_threshold_percent_degen += sell_threshold_increment
                         logger.info(f"Profit threshold increased to {target_profit_percent:.2f}% and sell threshold increased to {sell_threshold_percent_degen:.2f}% for DEGENUSDT.")
 
-                    if price_change_percent_degen <= sell_threshold_percent_degen:
+                    current_time = datetime.datetime.now()
+                    current_minutes = current_time.minute
+
+                    if current_minutes % 12 == 0 and price_change_percent_degen <= sell_threshold_percent_degen:
                         logger.info(f"Price retraced to {price_change_percent_degen:.2f}% for DEGENUSDT. Selling DEGEN.")
                         symbol_balance_degen = get_wallet_balance("DEGEN")
                         if symbol_balance_degen > 10:
