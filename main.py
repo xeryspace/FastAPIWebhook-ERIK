@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 @app.get("/")
 async def read_root():
-    return {"name": "my-app", "version": "Hello world! From FastAPI running on Uvicorn."}
+    return {"name": "my-app", "version": "Hello world! From FastAPI running on Uvicorn. Eriks App"}
 
 @app.post("/webhook")
 async def handle_webhook(request: Request):
