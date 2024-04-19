@@ -91,6 +91,7 @@ def open_position(symbol, amount):
 
 def close_position(symbol, amount):
     global current_buy_price_degen
+    print(current_buy_price_degen)
     try:
         session.place_order(
             category="spot", symbol=symbol, side='sell', orderType="Market", qty=amount)
@@ -133,7 +134,7 @@ async def check_price():
     global current_buy_price_degen
     target_profit_percent = 1.8
     initial_sell_threshold_percent = 1
-    target_loss_percent = -1.4
+    target_loss_percent = -2.7
     profit_threshold_increment = 0.2
     sell_threshold_increment = 0.2
 
