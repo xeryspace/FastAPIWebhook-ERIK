@@ -133,10 +133,10 @@ async def process_signal(symbol, action):
 
 async def check_price():
     global current_buy_price_degen
-    target_profit_percent = 1.8
+    target_profit_percent = 1.6
     initial_sell_threshold_percent = 1
     profit_threshold_increment = 0.2
-    sell_threshold_increment = 0.1
+    sell_threshold_increment = 0.2
 
     while True:
         if current_buy_price_degen > 0:
@@ -162,9 +162,8 @@ async def check_price():
                             symbol_balance_degen = math.floor(symbol_balance_degen)
                             close_position("DEGENUSDT", symbol_balance_degen)
                         break
-                    await asyncio.sleep(2)
-
-        await asyncio.sleep(2)
+                    await asyncio.sleep(0.1)
+        await asyncio.sleep(0.1)
 
 @app.on_event("startup")
 async def startup_event():
